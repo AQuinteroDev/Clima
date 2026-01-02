@@ -10,9 +10,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/loginReact', function () {
+Route::get('/loginClima', function () {
     return Inertia::render('login');
-})->name('login.react');
+});
+
+Route::post('/dashboard', function () {
+    return Inertia::render('dashboard');    
+});
 
 
 

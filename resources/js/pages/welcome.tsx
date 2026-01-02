@@ -12,8 +12,8 @@ export default function Welcome() {
                         Bienvenido al Clima Mundial
                     </h1>
                     <p className="mt-4 text-gray-600 dark:text-gray-400">
-                        <a href="/loginReact" className="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600">
-                            Iniciar sesion
+                        <a href="/loginClima" className="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600">
+                            Iniciar Sesion
                         </a>
                     </p>
                     <div className="mt-6 ">
