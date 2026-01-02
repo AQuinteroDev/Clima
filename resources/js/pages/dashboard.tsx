@@ -1,3 +1,21 @@
+/*
+
+https://www.xweather.com/docs/weather-api/getting-started/authentication
+
+
+ID:
+fue6eiRiClWmkVcj0CKf8
+
+Secret:
+IkzYmjMU6JdZo30zVCcwgvbEjUNId1v0iLOf535p
+
+Namespace:
+*
+
+https://data.api.xweather.com/places/98109?client_id={client_id}&client_secret={client_secret}
+
+
+*/
 
 import { Head } from '@inertiajs/react';
 
@@ -19,12 +37,6 @@ export default function Dashboard() {
                         Espacio reservado para el contenido del dashboard
                     </div>
 
-                </div>
-
-                <div className="mt-4 text-center">
-                    <p className="text-xs text-gray-500">
-                        &copy; {new Date().getFullYear()} Tu Aplicación
-                    </p>
                 </div>
             </div>
         </>

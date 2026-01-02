@@ -17,9 +17,9 @@ export default function Welcome() {
                         </a>
                     </p>
                     <div className="mt-6 ">
-                            <button className='rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-green-600'>
+                            <a href="/registerClima" className='rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-green-600'>
                                 Registrarse
-                            </button>
+                            </a>
                     </div>
                 </div>
             </div>
