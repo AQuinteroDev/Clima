@@ -10,8 +10,8 @@ interface MyComponentProps {
 const MyComponent: React.FC<MyComponentProps> = ({ message, count }) => {
   return (
     <div>
-      <h1>{message}</h1>
-      {count && <p>Contador: {count}</p>}
+      <h1 style={{ color: 'white' }}>{message}</h1>
+      {count !== undefined && <p>Contador: {count}</p>}
     </div>
   );
 };
