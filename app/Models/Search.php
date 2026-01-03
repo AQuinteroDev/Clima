@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Search extends Model
 {
-    //
+    protected $table = 'searches';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
 }
