@@ -1,10 +1,12 @@
 <?php
 
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
+use App\Models\Search;
 // Importamos los controladores con su ruta completa
-use App\Http\Controllers\UserController; 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController; 
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -15,7 +17,10 @@ Route::get('/registerClima', function () {
 });
 
 Route::post('/register', [UserController::class, 'store'])->name('register');
+
 Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::post('/searches', [SearchController::class, 'store'])->middleware('auth');
 
 Route::get('/loginClima', function () {
     return Inertia::render('login');
