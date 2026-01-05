@@ -19,4 +19,12 @@ class UserController extends Controller
         
         return redirect('/');
     }
+
+    public function login(Request $request){
+        
+        User::where('email', $request->email)->first();
+        User::where('password', $request->password)->first();
+        
+        return redirect('/dashboard');
+    }
 }
