@@ -26,6 +26,8 @@ Route::get('/loginClima', function () {
     return Inertia::render('login');
 });
 
+Route::get('/perfil', [UserController::class, 'show'])->middleware('auth');
+
 Route::get('/dashboard', function () {
     return Inertia::render('dashboard');    
 });

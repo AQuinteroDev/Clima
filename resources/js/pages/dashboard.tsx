@@ -68,6 +68,8 @@ export default function Dashboard() {
                 style={{ backgroundImage: "url('/background_main.png')" }}>
                 
                 <div className="w-full max-w-4xl bg-white/90 backdrop-blur-md shadow-2xl rounded-3xl p-8 border border-white/20">
+                
+                
                     
                     <div className="mb-8 text-center">
                         <h2 className="text-4xl font-black text-gray-800 tracking-tight">Weather Explorer</h2>
