@@ -1,8 +1,5 @@
 # 🌤️ Clima App - Real-Time Weather Tracker
 
-![Screenshot de la Aplicación](ruta-a-tu-imagen-principal.png)
-*(Reemplaza esto con una captura de pantalla atractiva de tu interfaz principal)*
-
 ## 📖 Introducción / Overview
 
 **[ES]**
@@ -103,4 +100,4 @@ Visita `http://localhost:8000` para ver la aplicación.
 
 ---
 
-Desarrollado con 💻 por **[Tu Nombre/AQuinteroDev]**.
+Desarrollado con 💻 por **[Alejandro Quintero Pérez/AQuinteroDev]**.
