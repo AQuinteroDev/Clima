@@ -1,12 +1,17 @@
 import { Head } from '@inertiajs/react';
+import MainNavbar from '@/components/mainNavbar';
+import Footer from '@/components/mainFooter';
 
 export default function Welcome() {
     return (
         <>
             <Head title="Bienvenido" />
 
+            <MainNavbar />
+
             <div className="flex min-h-screen flex-col items-center justify-center bg-center bg-cover bg-no-repeat"
                    style={{ backgroundImage: "url('/background.png')" }}>
+                    <></>
                 <div className="rounded-lg bg-white p-8 shadow-md dark:bg-gray-800">
                     <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
                         Bienvenido al Clima Mundial
@@ -23,6 +28,7 @@ export default function Welcome() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }
