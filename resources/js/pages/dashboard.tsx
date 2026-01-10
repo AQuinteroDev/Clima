@@ -1,5 +1,7 @@
 import { Head, router } from '@inertiajs/react';
 import { useState } from 'react';
+import MainNavbar from '@/components/mainNavbar';
+import Footer from '@/components/mainFooter';
 
 export default function Dashboard() {
     // 1. Estados
@@ -63,6 +65,7 @@ export default function Dashboard() {
     return (
         <>
             <Head title="Dashboard - Clima" />
+            <MainNavbar />
 
             <div className="min-h-screen flex flex-col items-center justify-center bg-center bg-cover bg-no-repeat p-4"
                 style={{ backgroundImage: "url('/background_main.png')" }}>
@@ -129,6 +132,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

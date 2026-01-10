@@ -62,4 +62,3 @@ const Footer = () => {
 };
 
 export default Footer;
-// SOLUCIÓN AL ERROR DE CLASES (Tipado)

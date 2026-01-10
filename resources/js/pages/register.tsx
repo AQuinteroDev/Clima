@@ -89,7 +89,7 @@ export default function Register() {
 
                             <div className="flex items-center justify-between gap-4">
                                 <Link 
-                                    href="/login" 
+                                    href="/loginClima" 
                                     className="text-sm text-blue-500 hover:text-blue-800 font-semibold"
                                 >
                                     ¿Ya tienes cuenta?

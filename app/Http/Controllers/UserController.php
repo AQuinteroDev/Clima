@@ -27,12 +27,4 @@ class UserController extends Controller
         
         return redirect('/dashboard');
     }
-
-    public function show(Request $request)
-    {
-        $user = $request->user();
-        return inertia('Perfil', [
-            'user' => $user
-        ]);
-    }
 }

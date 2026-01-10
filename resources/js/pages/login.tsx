@@ -1,4 +1,6 @@
 import { Head, useForm } from '@inertiajs/react';
+import MainNavbar from '@/components/mainNavbar';
+import Footer from '@/components/mainFooter'
 
 export default function Login() {
     // 1. Inicializamos el motor del formulario
@@ -17,6 +19,8 @@ export default function Login() {
 
     return (
         <>
+
+            <MainNavbar/>
             <Head title="Iniciar Sesión" />
 
             <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-center bg-cover bg-no-repeat"
@@ -79,15 +83,10 @@ export default function Login() {
                             </div>
                         </form>
                     </div>
-
-                </div>
-
-                <div className="mt-4 text-center">
-                    <p className="text-xs text-gray-500">
-                        &copy; {new Date().getFullYear()} Tu Aplicación
-                    </p>
                 </div>
             </div>
+
+            <Footer/>
         </>
     );
 }
