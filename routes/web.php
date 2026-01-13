@@ -3,8 +3,9 @@
 use Inertia\Inertia;
 use App\Models\Search;
 // Importamos los controladores con su ruta completa
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use Illuminate\Http\Request; 
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\SearchController;
 
@@ -24,11 +25,28 @@ Route::post('/searches', [SearchController::class, 'store'])->middleware('auth')
 
 Route::get('/loginClima', function () {
     return Inertia::render('login');
+    
+});
+
+Route::get('/user-session', function () {
+    if (Auth::check()) {
+        return response()->json(Auth::user()); 
+    }
+    return response()->json(null);
+});
+
+Route::get('/logout-clima', function (Request $request) {
+    Auth::logout(); 
+    
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
 });
 
 Route::get('/perfil', function () {
     return Inertia::render('perfil');    
-});
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return Inertia::render('dashboard');    

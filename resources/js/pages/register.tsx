@@ -7,6 +7,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '', // Necesario para el registro en Laravel
+        img_url: '', // Nuevo campo para la URL de la imagen de perfil
     });
 
     // 2. Función que envía los datos al backend
@@ -86,6 +87,20 @@ export default function Register() {
                                 {errors.password && <div className="text-red-500 text-xs mt-1">{errors.password}</div>}
                             </div>
 
+                            {/*Imagen de perfil */}
+                            <div className="mb-6 text-left">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="img_url">
+                                    URL de la Imagen de Perfil (opcional)
+                                </label>
+                                <input
+                                    id="img_url"
+                                    type="text"
+                                    value={data.img_url}
+                                    onChange={(e) => setData('img_url', e.target.value)}
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="https://ejemplo.com/foto.jpg"
+                                />
+                            </div>
 
                             <div className="flex items-center justify-between gap-4">
                                 <Link 
