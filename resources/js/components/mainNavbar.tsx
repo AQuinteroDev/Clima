@@ -5,6 +5,7 @@ import { Menu, X, CloudSun, User, LayoutDashboard, LogIn, LogOut } from 'lucide-
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Perfil', href: '/perfilInfo', icon: User },
+  {name:'Historial', href:'/historial', icon: LogIn},
 ];
 
 function classNames(...classes: (string | boolean | undefined | null)[]) {

@@ -61,4 +61,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('dashboard');    
 })->middleware(['auth']);
 
+Route::get('/historial', function () {
+    return Inertia::render('historialBusqueda');
+})->middleware(['auth']);
+
 require __DIR__.'/settings.php';
