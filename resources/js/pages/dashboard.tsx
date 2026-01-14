@@ -4,8 +4,9 @@ import MainNavbar from '@/components/mainNavbar';
 import Footer from '@/components/mainFooter';
 
 export default function Dashboard() {
-    // 1. Estados
+    // 1. Estados separados
     const [city, setCity] = useState(''); 
+    const [country, setCountry] = useState(''); // Nuevo estado para el país
     const [weather, setWeather] = useState<any>(null); 
     const [loading, setLoading] = useState(false);
 
@@ -13,50 +14,48 @@ export default function Dashboard() {
     const clientID = 'fue6eiRiClWmkVcj0CKf8';
     const clientSecret = 'IkzYmjMU6JdZo30zVCcwgvbEjUNId1v0iLOf535p';
 
-    // 2. Función para consultar la API usando "Advanced Queries"
-        const fetchWeather = async (e: React.FormEvent) => {
+    // 2. Función para consultar la API
+    const fetchWeather = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!city) return;
 
         setLoading(true);
         try {
-            // 1. Limpiamos y codificamos la ciudad
-            const cityEncoded = encodeURIComponent(city.trim());
+            // Combinamos ciudad y país para la API de XWeather (formato: ciudad,país)
+            const query = country ? `${city.trim()},${country.trim()}` : city.trim();
+            const queryEncoded = encodeURIComponent(query);
             
-            // 2. Usamos el endpoint directo (el más fiable para nombres de ciudades)
-            // Eliminamos el /search?query= y ponemos la ciudad directamente tras /observations/
-            const url = `https://data.api.xweather.com/observations/${cityEncoded}?client_id=${clientID}&client_secret=${clientSecret}`;
+            const url = `https://data.api.xweather.com/observations/${queryEncoded}?client_id=${clientID}&client_secret=${clientSecret}`;
 
             const response = await fetch(url);
             const data = await response.json();
 
-            // 3. XWeather devuelve los datos en 'response' (a veces es un array, a veces un objeto)
             if (data.success && data.response) {
                 const weatherInfo = Array.isArray(data.response) ? data.response[0] : data.response;
                 
-                // Verificamos que existan datos de observación (ob)
                 if (weatherInfo.ob) {
                     setWeather(weatherInfo);
 
-                    // --- GUARDAR EN LARAVEL ---
+                    // --- ENVIAR POST A LARAVEL CON DATOS SEPARADOS ---
                     router.post('/searches', {
-                        city: weatherInfo.place.name || city,
+                        city: city.trim(),
+                        country: country.trim(),
                         temp: weatherInfo.ob.tempC,
                     }, {
                         preserveScroll: true,
                     });
+
                 } else {
-                    alert("La ciudad se encontró pero no hay datos climáticos actuales.");
+                    alert("No hay datos climáticos actuales para esta ubicación.");
                 }
 
             } else {
-                // Si data.success es false o no hay response
-                alert(`No se encontraron resultados para "${city}". Prueba con "Ciudad, País" (ej: Madrid, ES)`);
+                alert(`No se encontraron resultados para "${city}${country ? ', ' + country : ''}"`);
                 setWeather(null);
             }
         } catch (error) {
             console.error("Error en la petición:", error);
-            alert("Error de conexión. Verifica tu internet o la URL de la API.");
+            alert("Error de conexión.");
         } finally {
             setLoading(false);
         }
@@ -71,21 +70,28 @@ export default function Dashboard() {
                 style={{ backgroundImage: "url('/background_main.png')" }}>
                 
                 <div className="w-full max-w-4xl bg-white/90 backdrop-blur-md shadow-2xl rounded-3xl p-8 border border-white/20">
-                
-                
                     
                     <div className="mb-8 text-center">
                         <h2 className="text-4xl font-black text-gray-800 tracking-tight">Weather Explorer</h2>
                         <p className="text-gray-500 mt-2 font-medium">Consulta avanzada mediante XWeather API</p>
                         
+                        {/* Formulario con dos inputs */}
                         <form onSubmit={fetchWeather} className="mt-8 flex flex-col sm:flex-row gap-3">
                             <input
-                                id="city"
                                 type="text"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                                className="text-black flex-1 shadow-inner border border-gray-300 rounded-2xl py-4 px-6 focus:ring-4 focus:ring-blue-400 outline-none text-lg"
-                                placeholder="Ej: Madrid o Seattle,WA"
+                                className="text-black flex-[2] shadow-inner border border-gray-300 rounded-2xl py-4 px-6 focus:ring-4 focus:ring-blue-400 outline-none text-lg"
+                                placeholder="Ciudad (Ej: Madrid)"
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                                className="text-black flex-1 shadow-inner border border-gray-300 rounded-2xl py-4 px-6 focus:ring-4 focus:ring-blue-400 outline-none text-lg uppercase"
+                                placeholder="País (Ej: ES)"
+                                maxLength={2}
                             />
                             <button
                                 type="submit"

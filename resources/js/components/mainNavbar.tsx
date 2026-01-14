@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { usePage, Link } from '@inertiajs/react'; // Importamos herramientas de Inertia
+import { usePage, Link } from '@inertiajs/react';
 import { Menu, X, CloudSun, User, LayoutDashboard, LogIn, LogOut } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Perfil', href: '/profile', icon: User },
+  { name: 'Perfil', href: '/perfilInfo', icon: User },
 ];
 
 function classNames(...classes: (string | boolean | undefined | null)[]) {
@@ -50,7 +50,6 @@ export default function MainNavbar() {
             </div>
           </Link>
 
-          {/* Links Centrales (Solo visibles si hay sesión o según tu lógica) */}
           <div className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-1 py-1">
             {navigation.map((item) => (
               <Link
@@ -64,7 +63,6 @@ export default function MainNavbar() {
             ))}
           </div>
 
-          {/* Lado Derecho: Condicional de Sesión */}
           <div className="hidden md:flex items-center">
             {user ? (
               <div className="flex items-center gap-4">

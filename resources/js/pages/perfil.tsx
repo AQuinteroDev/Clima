@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MainNavbar from '@/components/mainNavbar';
+import { usePage, Link } from '@inertiajs/react';
 import Footer from '@/components/mainFooter';  
 import { 
   User, Mail, MapPin, Calendar, Briefcase, 
@@ -12,6 +13,8 @@ const ProfileProPage = () => {
 
   // Clase común para las tarjetas con efecto cristal
   const cardStyle = "bg-white/80 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl";
+  const { auth } = usePage().props as any;
+  const user = auth.user;
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
@@ -30,11 +33,15 @@ const ProfileProPage = () => {
             <div className={`${cardStyle} p-6 text-center`}>
               <div className="relative inline-block">
                 <div className="w-32 h-32 rounded-3xl bg-slate-200 mx-auto mb-4 border-4 border-white shadow-lg overflow-hidden flex items-center justify-center">
-                  <User size={64} className="text-slate-400" />
+                  <img 
+                    src={user.img_url || `https://ui-avatars.com/api/?name=${user.name}`} 
+                    className="w-full h-full object-cover" 
+                    alt="Profile" 
+                  />
                 </div>
                 <div className="absolute bottom-6 right-0 w-6 h-6 bg-green-500 border-4 border-white rounded-full"></div>
               </div>
-              <h1 className="text-2xl font-bold text-slate-800">Nombre de Usuario</h1>
+              <h1 className="text-2xl font-bold text-slate-800">{user.name}</h1>
               <p className="text-blue-600 font-medium text-sm mb-4">Especialista en Meteorología</p>
               
               <div className="flex justify-center gap-3 mb-6">
@@ -54,9 +61,18 @@ const ProfileProPage = () => {
                 </div>
               </div>
 
-              <button className="w-full mt-4 bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition-all shadow-lg shadow-blue-200">
-                Editar Perfil
-              </button>
+              <Link
+                href="/editarPerfil"
+                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-blue-600 py-3 font-bold text-white transition-all hover:bg-blue-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] active:scale-95 shadow-lg shadow-blue-600/20"
+              >
+                {/* Icono que rota sutilmente al pasar el ratón */}
+                <Settings size={18} className="transition-transform duration-500 group-hover:rotate-90" />
+                
+                <span>Editar Perfil</span>
+
+                {/* Reflejo de luz interno para toque premium */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+              </Link>
             </div>
 
             {/* HABILIDADES (Skills) */}
@@ -91,7 +107,7 @@ const ProfileProPage = () => {
                   <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><Mail size={20}/></div>
                   <div>
                     <p className="text-xs text-slate-400 font-bold uppercase">Email</p>
-                    <p className="text-sm font-semibold text-slate-700">usuario@weatherx.com</p>
+                    <p className="text-sm font-semibold text-slate-700">{user.email}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">

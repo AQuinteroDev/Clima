@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerfilController;
 use Inertia\Inertia;
 use App\Models\Search;
 // Importamos los controladores con su ruta completa
@@ -44,12 +45,20 @@ Route::get('/logout-clima', function (Request $request) {
     return redirect('/');
 });
 
+Route::get('/perfilInfo', [PerfilController::class, 'showProfile'])->name('perfil')->middleware('auth');
+
 Route::get('/perfil', function () {
-    return Inertia::render('perfil');    
+    return Inertia::render('perfil');
 })->middleware('auth');
+
+Route::get('/editarPerfil', function () {
+    return Inertia::render('editarPerfil');
+})->middleware('auth');
+
+Route::post('/updatePerfil', [PerfilController::class, 'update'])->name('update')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return Inertia::render('dashboard');    
-});
+})->middleware(['auth']);
 
 require __DIR__.'/settings.php';
