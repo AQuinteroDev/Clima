@@ -1,4 +1,4 @@
-import { wayfinder } from '@laravel/vite-plugin-wayfinder';
+// import { wayfinder } from '@laravel/vite-plugin-wayfinder'; // <-- COMENTA ESTO
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
@@ -17,9 +17,10 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
-        wayfinder({
+        // COMENTA TODA ESTA PARTE:
+        /* wayfinder({
             formVariants: true,
-        }),
+        }), */
     ],
     esbuild: {
         jsx: 'automatic',

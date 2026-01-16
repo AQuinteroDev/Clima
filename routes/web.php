@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\SearchController;
 
+
 Route::get('/', function () {
     return Inertia::render('welcome');
 });
@@ -61,8 +62,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('dashboard');    
 })->middleware(['auth']);
 
-Route::get('/historial', function () {
-    return Inertia::render('historialBusqueda');
-})->middleware(['auth']);
+Route::get('/historial', [SearchController::class, 'read'])->middleware('auth');
+
+Route::get('/deleteSearches', [SearchController::class, 'deleteAll'])->middleware('auth');
+
+Route::delete('/searchesDelete/{id}', [SearchController::class, 'delete'])->middleware('auth');
 
 require __DIR__.'/settings.php';

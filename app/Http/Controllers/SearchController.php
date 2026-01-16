@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use id;
+use Inertia\Inertia;
 use App\Models\Search;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,5 +25,33 @@ class SearchController extends Controller
         ]);
 
         return redirect('/dashboard');
+    }
+
+    public function read(){
+        $searches = Search::where('user_id', Auth::id())
+        ->orderBy('created_at', 'desc') 
+        ->get();
+
+        return Inertia::render('historialBusqueda', [
+            'searches' => $searches
+        ]);
+    }
+
+    public function deleteAll(){
+
+        Search::where('user_id', Auth::id())->delete();
+
+        return redirect('/historial');
+    }
+
+    public function delete($id){
+
+        $search = Search::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if($search){
+            $search->delete();
+        }
+
+        return redirect('/historial');
     }
 }

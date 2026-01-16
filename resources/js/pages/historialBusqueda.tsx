@@ -17,7 +17,7 @@ interface SearchRecord {
     id: number;
     city: string;
     countrycode: string;
-    temp: number;
+    last_temperature: number;
     created_at: string;
 }
 
@@ -30,7 +30,7 @@ export default function History({ searches = [] }: Props) {
     // Función para borrar (opcional, solo diseño)
     const deleteSearch = (id: number) => {
         if(confirm('¿Eliminar este registro?')) {
-            router.delete(`/searches/${id}`);
+            router.delete(`/searchesDelete/${id}`);
         }
     };
 
@@ -51,10 +51,7 @@ export default function History({ searches = [] }: Props) {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                     <div>
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="p-3 bg-blue-600/20 rounded-2xl border border-blue-500/30 text-blue-400">
-                                <HistoryIcon size={24} />
-                            </div>
-                            <span className="text-blue-500 font-black tracking-[0.2em] text-xs uppercase">Insights</span>
+                            
                         </div>
                         <h1 className="text-5xl font-black text-white tracking-tighter">
                             Tu Historial
@@ -72,7 +69,7 @@ export default function History({ searches = [] }: Props) {
                             <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">Promedio</p>
                             <p className="text-2xl font-black text-blue-400">
                                 {searches.length > 0 
-                                    ? Math.round(searches.reduce((acc, s) => acc + s.temp, 0) / searches.length) 
+                                    ? Math.round(searches.reduce((acc, s) => acc + s.last_temperature, 0) / searches.length) 
                                     : 0}°C
                             </p>
                         </div>
@@ -107,8 +104,8 @@ export default function History({ searches = [] }: Props) {
                                         </td>
                                         <td className="px-8 py-6">
                                             <div className="flex items-center gap-2">
-                                                <Thermometer size={16} className={search.temp > 25 ? "text-orange-400" : "text-blue-400"} />
-                                                <span className="text-xl font-black text-white">{search.temp}°C</span>
+                                                <Thermometer size={16} className={search.last_temperature > 25 ? "text-orange-400" : "text-blue-400"} />
+                                                <span className="text-xl font-black text-white">{search.last_temperature}°C</span>
                                             </div>
                                         </td>
                                         <td className="px-8 py-6 text-slate-400 font-medium">
@@ -160,10 +157,12 @@ export default function History({ searches = [] }: Props) {
 
                 {/* Botón de exportar o limpiar (Decorativo) */}
                 <div className="mt-8 flex justify-end">
-                    <button className="text-slate-500 text-xs font-black uppercase tracking-widest hover:text-red-500 transition-colors flex items-center gap-2">
-                        <BarChart3 size={14} />
-                        Limpiar historial completo
-                    </button>
+                    <Link href={'/deleteSearches'}>
+                        <button className="text-slate-500 text-xs font-black uppercase tracking-widest hover:text-red-500 transition-colors flex items-center gap-2">
+                            <BarChart3 size={14} />
+                            Limpiar historial completo
+                        </button>
+                    </Link>
                 </div>
             </main>
 

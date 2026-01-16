@@ -10,11 +10,9 @@ export default function Dashboard() {
     const [weather, setWeather] = useState<any>(null); 
     const [loading, setLoading] = useState(false);
 
-    // Tus credenciales (Verificadas)
     const clientID = 'fue6eiRiClWmkVcj0CKf8';
     const clientSecret = 'IkzYmjMU6JdZo30zVCcwgvbEjUNId1v0iLOf535p';
 
-    // 2. Función para consultar la API
     const fetchWeather = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!city) return;
@@ -91,7 +89,7 @@ export default function Dashboard() {
                                 onChange={(e) => setCountry(e.target.value)}
                                 className="text-black flex-1 shadow-inner border border-gray-300 rounded-2xl py-4 px-6 focus:ring-4 focus:ring-blue-400 outline-none text-lg uppercase"
                                 placeholder="País (Ej: ES)"
-                                maxLength={2}
+                                maxLength={3}
                             />
                             <button
                                 type="submit"
