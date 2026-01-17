@@ -19,7 +19,7 @@ Route::get('/registerClima', function () {
     return Inertia::render('register');
 });
 
-Route::post('/register', [UserController::class, 'store'])->name('register');
+Route::post('/register', [UserController::class, 'store'])->name('register.post');
 
 Route::post('/login', [UserController::class, 'login'])->name('login.post');
 
