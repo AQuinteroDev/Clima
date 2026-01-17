@@ -6,6 +6,7 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Perfil', href: '/perfilInfo', icon: User },
   {name:'Historial', href:'/historial', icon: LogIn},
+  {name:'Favoritos', href:'/favorites', icon: LogIn},
 ];
 
 function classNames(...classes: (string | boolean | undefined | null)[]) {

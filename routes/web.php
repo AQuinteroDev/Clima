@@ -68,4 +68,8 @@ Route::get('/deleteSearches', [SearchController::class, 'deleteAll'])->middlewar
 
 Route::delete('/searchesDelete/{id}', [SearchController::class, 'delete'])->middleware('auth');
 
+Route::get('/favorites', function () {
+    return Inertia::render('favorites');    
+})->middleware(['auth']);
+
 require __DIR__.'/settings.php';

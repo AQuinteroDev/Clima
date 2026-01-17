@@ -41,7 +41,7 @@ class SearchController extends Controller
 
         Search::where('user_id', Auth::id())->delete();
 
-        return redirect('/historial');
+        return back();
     }
 
     public function delete($id){
@@ -52,6 +52,6 @@ class SearchController extends Controller
             $search->delete();
         }
 
-        return redirect('/historial');
+        return back();;
     }
 }
