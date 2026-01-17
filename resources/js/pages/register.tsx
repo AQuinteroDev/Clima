@@ -98,7 +98,7 @@ export default function Register() {
                                     value={data.img_url}
                                     onChange={(e) => setData('img_url', e.target.value)}
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    placeholder="https://ejemplo.com/foto.jpg"
+                                    placeholder="(Opcional) Ejemplo: https://ejemplo.com/foto.jpg"
                                 />
                             </div>
 
