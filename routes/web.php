@@ -21,7 +21,7 @@ Route::get('/registerClima', function () {
 
 Route::post('/register', [UserController::class, 'store'])->name('register');
 
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login.post');
 
 Route::post('/searches', [SearchController::class, 'store'])->middleware('auth');
 
