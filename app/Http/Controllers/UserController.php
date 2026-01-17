@@ -13,14 +13,20 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
+        // 1. Crear el usuario
+        $user =
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password), 
             'img_url'  => $request->img_url ?? null,
         ]);
-
         
+        //quiero que cuando se registre se cree ya la sesion
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
         return redirect('/');
     }
 
