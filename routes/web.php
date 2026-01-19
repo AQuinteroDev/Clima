@@ -78,4 +78,6 @@ Route::get('/favorites', function () {
 
 Route::post('/favoritesStore', [FavoritesController::class, 'store'])->middleware('auth');
 
+Route::delete('/favoritesDelete/{id}', [FavoritesController::class, 'delete'])->middleware('auth');
+
 require __DIR__.'/settings.php';

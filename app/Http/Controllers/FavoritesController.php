@@ -20,4 +20,15 @@ class FavoritesController extends Controller
 
        return redirect('/favorites');
     }
+
+    public function delete($id)
+    {
+        $favorite = Favorites::find($id);
+
+        if ($favorite && $favorite->user_id === Auth::id()) {
+            $favorite->delete();
+        }
+
+        return redirect('/favorites');
+    }
 }

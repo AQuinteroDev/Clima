@@ -5,7 +5,6 @@ import Footer from '@/components/mainFooter';
 import { Mail, Lock, User, Link as LinkIcon, UserPlus } from 'lucide-react';
 
 export default function Register() {
-    // 1. Configuración del formulario
     const { data, setData, post, processing, errors } = useForm({
         name: '',
         email: '',
@@ -18,7 +17,6 @@ export default function Register() {
         post('/register');
     };
 
-    // Estilo de inputs compartido con el Login
     const inputStyle = "w-full bg-white/[0.05] border border-white/10 rounded-2xl py-4 px-12 text-white placeholder-slate-500 outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 focus:bg-white/[0.08] transition-all duration-300";
 
     return (

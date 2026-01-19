@@ -208,7 +208,7 @@ export default function Favorites({ favorites = [], auth }: any) {
                                             </span>
                                         </div>
                                         <button 
-                                            onClick={() => router.delete(`/favorites/${fav.id}`)}
+                                            onClick={() => router.delete(`/favoritesDelete/${fav.id}`)}
                                             className="text-slate-600 hover:text-red-500 p-2 hover:bg-red-500/10 rounded-xl transition-all"
                                         >
                                             <Trash2 size={20} />
