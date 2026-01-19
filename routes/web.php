@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\PerfilController;
 use Inertia\Inertia;
-use App\Models\Search;
-// Importamos los controladores con su ruta completa
+use App\Models\Favorites;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; 
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\FavoritesController;
 
 
 Route::get('/', function () {
@@ -71,7 +71,11 @@ Route::get('/deleteSearches', [SearchController::class, 'deleteAll'])->middlewar
 Route::delete('/searchesDelete/{id}', [SearchController::class, 'delete'])->middleware('auth');
 
 Route::get('/favorites', function () {
-    return Inertia::render('favorites');    
+    return Inertia::render('favorites', [ 
+        'favorites' => Favorites::where('user_id', Auth::id())->get() 
+    ]); 
 })->middleware(['auth']);
+
+Route::post('/favoritesStore', [FavoritesController::class, 'store'])->middleware('auth');
 
 require __DIR__.'/settings.php';
