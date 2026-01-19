@@ -12,13 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('city_name');
-            $table->decimal('latitude');
-            $table->decimal('longitude');
-            $table->timestamps();
-        });
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+        $table->string('city_name');
+        $table->string('country_code', 5)->nullable();
+        
+        $table->decimal('latitude', 10, 8);
+        $table->decimal('longitude', 11, 8);
+
+        $table->unique(['user_id', 'city_name', 'country_code']);
+
+        $table->timestamps();
+    });
     }
 
     /**

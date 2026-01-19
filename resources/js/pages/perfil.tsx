@@ -60,32 +60,32 @@ const ProfileProPage = () => {
                   <p className="text-lg font-bold">42</p>
                 </div>
               </div>
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/editarPerfil"
+                  className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-blue-600 py-3 font-bold text-white transition-all hover:bg-blue-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] active:scale-95 shadow-lg shadow-blue-600/20"
+                >
+                  {/* Icono que rota sutilmente al pasar el ratón */}
+                  <Settings size={18} className="transition-transform duration-500 group-hover:rotate-90" />
+                  
+                  <span>Editar Perfil</span>
 
-              <Link
-                href="/editarPerfil"
-                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-blue-600 py-3 font-bold text-white transition-all hover:bg-blue-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] active:scale-95 shadow-lg shadow-blue-600/20"
-              >
-                {/* Icono que rota sutilmente al pasar el ratón */}
-                <Settings size={18} className="transition-transform duration-500 group-hover:rotate-90" />
+                  {/* Reflejo de luz interno para toque premium */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                </Link>
                 
-                <span>Editar Perfil</span>
+                <Link
+                  href={`/borrarPerfil/${user.id}`}
+                  className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-red-600 py-3 font-bold text-white transition-all hover:bg-red-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] active:scale-95 shadow-lg shadow-blue-600/20"
+                >
+                  <X size={18} className="transition-transform duration-500 group-hover:-rotate-12 group-hover:text-red-500" />
+                  
+                  <span>Eliminar Perfil</span>
 
-                {/* Reflejo de luz interno para toque premium */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              </Link>
-
-              <Link
-                href="/editarPerfil"
-                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-red-600 py-3 font-bold text-white transition-all hover:bg-red-500 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] active:scale-95 shadow-lg shadow-blue-600/20"
-              >
-                {/* Icono que rota sutilmente al pasar el ratón */}
-                <Settings size={18} className="transition-transform duration-500 group-hover:rotate-90" />
-                
-                <span>Editar Perfil</span>
-
-                {/* Reflejo de luz interno para toque premium */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              </Link>
+                  {/* Reflejo de luz interno para toque premium */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                </Link>
+              </div>
             </div>
 
             {/* HABILIDADES (Skills) */}

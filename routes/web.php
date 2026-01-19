@@ -56,6 +56,8 @@ Route::get('/editarPerfil', function () {
     return Inertia::render('editarPerfil');
 })->middleware('auth');
 
+Route::get('/borrarPerfil/{id}', [PerfilController::class, 'delete'])->middleware('auth');
+
 Route::post('/updatePerfil', [PerfilController::class, 'update'])->name('update')->middleware('auth');
 
 Route::get('/dashboard', function () {

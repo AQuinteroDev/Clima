@@ -41,4 +41,19 @@ class PerfilController extends Controller
 
         return redirect('/perfil')->with('success', 'Perfil actualizado correctamente.');
     }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+
+        if ($user && $user->id === Auth::id()) {
+            Auth::logout();
+
+            $user->delete();
+
+            return redirect('/')->with('success', 'Perfil eliminado correctamente.');
+        }
+
+        return redirect('/perfil')->with('error', 'No se pudo eliminar el perfil.');
+    }   
 }
