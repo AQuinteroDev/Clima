@@ -61,7 +61,9 @@ Route::get('/borrarPerfil/{id}', [PerfilController::class, 'delete'])->middlewar
 Route::post('/updatePerfil', [PerfilController::class, 'update'])->name('update')->middleware('auth');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('dashboard');    
+    return Inertia::render('dashboard', [ 
+        'favorites' => Favorites::where('user_id', Auth::id())->get() 
+    ]);    
 })->middleware(['auth']);
 
 Route::get('/historial', [SearchController::class, 'read'])->middleware('auth');

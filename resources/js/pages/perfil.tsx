@@ -161,10 +161,8 @@ const ProfileProPage = () => {
               </div>
             </div>
 
-            {/* EXPERIENCIA Y EDUCACIÓN (Grid 2 columnas) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
-              {/* Experiencia */}
               <div className={`${cardStyle} p-10`}>
                 <h2 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
                   <Briefcase size={16} className="text-blue-500"/> Trayectoria
@@ -183,7 +181,6 @@ const ProfileProPage = () => {
                 </div>
               </div>
 
-              {/* Educación */}
               <div className={`${cardStyle} p-10`}>
                 <h2 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
                   <GraduationCap size={16} className="text-purple-500"/> Formación
