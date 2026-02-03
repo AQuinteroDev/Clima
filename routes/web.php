@@ -38,7 +38,7 @@ Route::get('/user-session', function () {
     return response()->json(null);
 });
 
-Route::get('/logout-clima', function (Request $request) {
+Route::get('/logout', function (Request $request) {
     Auth::logout(); 
     
     $request->session()->invalidate();
