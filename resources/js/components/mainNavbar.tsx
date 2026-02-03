@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePage, Link } from '@inertiajs/react';
 import { Menu, X, CloudSun, User, LayoutDashboard, LogIn, LogOut } from 'lucide-react';
-import { toast } from 'react-hot-toast'; // Asegúrate de tener esto
+import { toast } from 'react-hot-toast';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -18,42 +18,44 @@ export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // 1. TODO ESTO DEBE IR DENTRO DE LA FUNCIÓN
   const { auth, flash } = usePage().props as any;
   const user = auth.user;
 
-  // 2. ESTO TE DIRÁ EN LA CONSOLA (F12) SI EL MENSAJE LLEGA
-  useEffect(() => {
+ useEffect(() => {
     if (flash?.error) {
         toast.error((t) => (
-            <span className="flex items-center gap-3">
-                {flash.error}
+            <div className="flex flex-col items-center justify-center gap-6 py-4 px-2">
+                <div className="flex items-center gap-4">
+                    <span className="text-xl md:text-2xl font-bold text-center leading-tight">
+                        {flash.error}
+                    </span>
+                </div>
+                
                 <button
                     onClick={() => toast.dismiss(t.id)}
-                    className="ml-2 bg-white/10 hover:bg-white/20 px-3 py-1 rounded-lg text-xs font-bold transition-colors border border-white/10"
+                    className="w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl text-lg font-black transition-all active:scale-95 border border-white/20 shadow-lg"
                 >
-                    OK
+                    ENTENDIDO
                 </button>
-            </span>
+            </div>
         ), {
             id: 'flash-error',
-            position: 'top-center',
-            duration: 6000,
+            position: 'top-center', 
+            duration: 8000,
             style: {
-              height: '70%',
-              width: 'auto',
-              background: '#1e293b',
-              color: '#fff',
-              borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.1)',
-              backdropFilter: 'blur(10px)',
-              padding: '12px 16px',
+                marginTop: '25vh',
+                minWidth: '350px',
+                maxWidth: '500px',
+                width: '90vw',
+                background: '#1e293b',
+                color: '#fff',
+                borderRadius: '28px',
+                border: '2px solid rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(20px)',
+                padding: '24px',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
             },
         });
-    }
-
-    if (flash?.message) {
-        toast.success(flash.message, { id: 'flash-success' });
     }
 }, [flash]);
 
@@ -184,7 +186,6 @@ export default function MainNavbar() {
               {item.name}
             </Link>
           ))}
-          {/* ... resto del menú móvil igual ... */}
         </div>
       </div>
     </nav>
