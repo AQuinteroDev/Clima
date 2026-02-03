@@ -13,6 +13,10 @@ class PerfilController extends Controller
 {
     public function showProfile()
     {
+        if (!Auth::check()) {
+            return redirect()->back(fallback: '/')->with('error', 'Debes iniciar sesión para acceder al panel de control.');
+        }
+
         $usuarioLogueado = Auth::user(); 
 
         if (!$usuarioLogueado) {

@@ -28,6 +28,11 @@ class SearchController extends Controller
     }
 
     public function read(){
+
+        if (!Auth::check()) {
+            return redirect()->back(fallback: '/')->with('error', 'Debes iniciar sesión para acceder al panel de control.');
+        }
+        
         $searches = Search::where('user_id', Auth::id())
         ->orderBy('created_at', 'desc') 
         ->get();

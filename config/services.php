@@ -18,6 +18,12 @@ return [
         'key' => env('POSTMARK_API_KEY'),
     ],
 
+
+    'xweather' => [
+        'id' => env('XWEATHER_CLIENT_ID', 'fue6eiRiClWmkVcj0CKf8'),
+        'secret' => env('XWEATHER_CLIENT_SECRET', 'IkzYmjMU6JdZo30zVCcwgvbEjUNId1v0iLOf535p'),
+    ],
+
     'resend' => [
         'key' => env('RESEND_API_KEY'),
     ],
