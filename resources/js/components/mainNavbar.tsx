@@ -8,6 +8,7 @@ const navigation = [
   { name: 'Perfil', href: '/perfilInfo', icon: User },
   { name: 'Historial', href: '/historial', icon: LogIn },
   { name: 'Favoritos', href: '/favorites', icon: LogIn },
+  { name: 'Soporte', href: '/consultas', icon: LogIn },
 ];
 
 function classNames(...classes: (string | boolean | undefined | null)[]) {
@@ -155,37 +156,70 @@ export default function MainNavbar() {
       </div>
 
       {/* Menú Móvil */}
-      <div
-        className={classNames(
-          'md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-slate-950 border-b border-white/10',
-          isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        )}
-      >
-        <div className="space-y-1 px-4 pb-6 pt-2">
-          {user && (
-             <div className="flex items-center gap-3 px-4 py-4 border-b border-white/5 mb-2">
-                <img 
-                  src={user.img_url || `https://ui-avatars.com/api/?name=${user.name}`} 
-                  className="w-12 h-12 rounded-full border-2 border-blue-500" 
-                  alt="Profile" 
-                />
-                <div>
-                  <p className="text-white font-bold">{user.name}</p>
-                  <p className="text-blue-400 text-xs">Sesión Activa</p>
-                </div>
-             </div>
-          )}
+<div
+  className={classNames(
+    'md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-slate-950 border-b border-white/10',
+    isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+  )}
+>
+  <div className="space-y-1 px-4 pb-6 pt-2">
+    {/* Si hay usuario, mostramos su perfil en móvil */}
+    {user && (
+      <div className="flex items-center gap-3 px-4 py-4 border-b border-white/5 mb-2">
+        <img 
+          src={user.img_url || `https://ui-avatars.com/api/?name=${user.name}`} 
+          className="w-12 h-12 rounded-full border-2 border-blue-500" 
+          alt="Profile" 
+        />
+        <div>
+          <p className="text-white font-bold">{user.name}</p>
+          <p className="text-blue-400 text-xs">Sesión Activa</p>
+        </div>
+      </div>
+    )}
 
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="flex items-center gap-3 rounded-xl px-4 py-4 text-base font-semibold text-gray-300 hover:bg-white/5 hover:text-white transition-all"
-            >
-              <item.icon className="h-5 w-5 text-blue-500" />
-              {item.name}
-            </Link>
-          ))}
+    {/* Enlaces de navegación comunes */}
+    {navigation.map((item) => (
+      <Link
+        key={item.name}
+        href={item.href}
+        className="flex items-center gap-3 rounded-xl px-4 py-4 text-base font-semibold text-gray-300 hover:bg-white/5 hover:text-white transition-all"
+      >
+        <item.icon className="h-5 w-5 text-blue-500" />
+        {item.name}
+      </Link>
+    ))}
+
+    {/* --- ESTO ES LO QUE TE FALTABA: Botones para cuando NO hay usuario en móvil --- */}
+    {!user ? (
+      <div className="mt-4 pt-4 border-t border-white/10 space-y-3">
+              <Link 
+                href="/loginClima" 
+                className="block w-full text-center text-gray-300 hover:text-white text-base font-semibold py-3"
+              >
+                Iniciar Sesión
+              </Link>
+              <Link
+                href="/registerClima"
+                className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl text-base font-black shadow-lg shadow-blue-600/20"
+              >
+                Crear Cuenta
+              </Link>
+            </div>
+          ) : (
+            /* Botón de Salir en móvil para usuarios logueados */
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <Link
+                href="/logout"
+                method="post"
+                as="button"
+                className="flex w-full items-center justify-center gap-2 bg-red-500/10 text-red-500 py-4 rounded-2xl text-base font-black border border-red-500/20"
+              >
+                <LogOut className="w-5 h-5" />
+                Cerrar Sesión
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

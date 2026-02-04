@@ -114,5 +114,9 @@ Route::get('/api/weather-data', function (Request $request) {
     ]);
 })->middleware('auth');
 
+Route::get('/consultas', function () {
+    return Inertia::render('consultas');
+});
+
 
 require __DIR__.'/settings.php';
